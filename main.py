@@ -5,7 +5,8 @@ pygame.init()
 screen = pygame.display.set_mode((800,400))
 pygame.display.set_caption('Idle Game For Epic People')
 clock = pygame.time.Clock()
-	
+
+font = pygame.font.Font('font.ttf',40)	
 x = 50
 y = 50
 value = 0
@@ -36,6 +37,7 @@ while True:
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			exit()
+
 
 	mousepoint = pygame.mouse.get_pos()
 	if event.type == pygame.MOUSEBUTTONUP:
@@ -70,6 +72,9 @@ while True:
 
 	if hit and value1 < len(blood_splatter):
 		screen.blit(blood, (mousepoint[0] - 25, mousepoint[1]))
+	
+	score_message = font.render(f'Slime: {score}',False,(255,255,255))
+	screen.blit(score_message,(25,25))
 
 	pygame.display.update()
 	clock.tick(60)
