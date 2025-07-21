@@ -9,6 +9,7 @@ clock = pygame.time.Clock()
 x = 50
 y = 50
 value = 0
+value1 = 0
 click = False
 score = 0
 button = pygame.image.load("slug_anim_f0.png")
@@ -18,6 +19,8 @@ run = True
 mouse_was_down = False
 counter = 0
 slime_image = [pygame.image.load("slug_anim_f0.png"),pygame.image.load("slug_anim_f1.png"),pygame.image.load("slug_anim_f2.png"),pygame.image.load("slug_anim_f3.png")]
+blood_splatter = [pygame.image.load("Blood Splatter/B001.png"),pygame.image.load("Blood Splatter/B002.png"),pygame.image.load("Blood Splatter/B003.png"),pygame.image.load("Blood Splatter/B004.png"),pygame.image.load("Blood Splatter/B005.png"),pygame.image.load("Blood Splatter/B006.png"),pygame.image.load("Blood Splatter/B007.png"),pygame.image.load("Blood Splatter/B008.png"),pygame.image.load("Blood Splatter/B009.png"),pygame.image.load("Blood Splatter/B010.png")]
+hit = False
 
 def load_image(filepath: str):
 	return pygame.image.load(filepath)
@@ -33,33 +36,54 @@ while True:
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			exit()
-	
+
+	mousepoint = pygame.mouse.get_pos()
 	if event.type == pygame.MOUSEBUTTONUP:
 		mouse_was_down = False
-	
+
 	mouse_down = pygame.mouse.get_pressed()[0]
 
-	if mouse_down and mouse_was_down == False:
-		if button_rect.collidepoint(event.pos):
+	if mouse_down and not mouse_was_down:
+		if button_rect.collidepoint(mousepoint):  # <- fixed to use mousepoint
 			score += 1
 			print("Button clicked! Counter:", score)
+			hit = True
 		mouse_was_down = True
-	
+
+	# Advance slime animation
 	if value >= len(slime_image):
 		value = 0
 	image = slime_image[value]
-	
-	image_rect = image.get_rect(midbottom = (y,x))
-	image = pygame.transform.scale_by(image,6)
-	
+	image_rect = image.get_rect(midbottom=(y, x))
+	image = pygame.transform.scale_by(image, 6)
+
+	# Advance blood splatter animation
+	if hit:
+		if value1 < len(blood_splatter):
+			blood = blood_splatter[value1]
+			screen.blit(blood, mousepoint)
+			value1 += 1
+		else:
+			value1 = 0
+			hit = False
+
+	# Clear screen first
+	screen.fill((0, 0, 0))
+
+	# Draw slime button
+	screen.blit(image, (x, y))
+
+	# Draw blood (if hit) — this stays after slime drawing so it’s "on top"
+	if hit and value1 < len(blood_splatter):
+		screen.blit(blood, mousepoint)
+
+	# Final update
+	pygame.display.update()
+	clock.tick(60)
+
+	# Control animation timing
 	if counter == 10:
 		value += 1
 		counter = 0
 	else:
 		counter += 1
-	screen.blit(image,(x,y))
-
-	pygame.display.update()
-		#updates the display surface
-	screen.fill((0, 0, 0))
-	clock.tick(60)
