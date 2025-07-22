@@ -113,6 +113,9 @@ while True:
 			value1 = 0
 			hit = False
 
+	if hit and value1 < len(blood_splatter):
+		screen.blit(blood, (mousepoint[0] - 25, mousepoint[1]))
+	
 	screen.fill((0, 0, 0))
 	screen.blit(image, (x, y))
 	screen.blit(sword,(550,25))
@@ -121,10 +124,6 @@ while True:
 	screen.blit(hook1,(550,250))
 	screen.blit(slime,(550,325))
 
-	
-	if hit and value1 < len(blood_splatter):
-		screen.blit(blood, (mousepoint[0] - 25, mousepoint[1]))
-	
 	score_message = font.render(f'Slime: {score}',False,(255,255,255))
 	screen.blit(score_message,(25,25))
 
@@ -166,43 +165,34 @@ while True:
 
 	pygame.display.update()
 	clock.tick(60)
+
 	if counter == 10:
 		value += 1
 		counter = 0
 	else:
 		counter += 1
-	
 	if bcounter == 60:
 		tick += 1
 		bcounter = 0
 	else:
 		bcounter += 1
-
 	if ccounter == 60:
 		tick1 += 1
 		ccounter = 0
 	else:
 		ccounter += 1
-
 	if dcounter == 60:
 		tick2 += 1
 		dcounter = 0
 	else:
-		dcounter += 1
-		
+		dcounter += 1	
 	if gcounter == 60:
 		tick3 += 1
 		gcounter = 0
 	else:
-		gcounter += 1
-		
+		gcounter += 1	
 	if fcounter == 60:
 		tick4 += 1
 		fcounter = 0
 	else:
 		fcounter += 1
-		
-
-
-
-
