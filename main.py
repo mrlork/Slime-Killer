@@ -7,9 +7,17 @@ pygame.display.set_caption('Idle Game For Epic People')
 clock = pygame.time.Clock()
 
 tick = 0
+tick1 = 0
+tick2 = 0
+tick3 = 0
+tick4 = 0
 timecounter = 0
 font = pygame.font.Font('font.ttf',40)	
 bcounter = 0
+ccounter = 0
+dcounter = 0
+gcounter = 0
+fcounter = 0
 x = 50
 y = 50
 value = 0
@@ -36,6 +44,10 @@ hook_rect = hook.get_rect(topleft=(550, 175))
 hook1_rect = hook1.get_rect(topleft=(550, 250))
 slime_rect = slime.get_rect(topleft=(550, 325))
 slimea = 0
+fishing_hooka = 0
+hooka = 0
+hook1a = 0
+slimesception = 0
 def load_image(filepath: str):
 	return pygame.image.load(filepath)
 
@@ -67,16 +79,23 @@ while True:
 			if score >= 100:
 				slimea += 1
 				score -= 100
-				print("slimes: ", slimea)
-				
+				print("slimes: ", slimea)		
 		elif fishing_hook_rect.collidepoint(mousepoint):
-			print("Fishing Hook clicked!")
+			if score >= 1000:
+				fishing_hooka += 1
+				score -= 1000
 		elif hook_rect.collidepoint(mousepoint):
-			print("Hook clicked!")
+			if score >= 10000:
+				hooka += 1
+				score -= 10000
 		elif hook1_rect.collidepoint(mousepoint):
-			print("Hook1 clicked!")
+			if score >= 100000:
+				hook1a += 1
+				score -= 100000
 		elif slime_rect.collidepoint(mousepoint):
-			print("Slime clicked!")
+			if score >= 1000000:
+				slimesception +=1
+				score -= 1000000
 		mouse_was_down = True
 
 	if value >= len(slime_image):
@@ -109,15 +128,44 @@ while True:
 	score_message = font.render(f'Slime: {score}',False,(255,255,255))
 	screen.blit(score_message,(25,25))
 
+	slime_message = font.render(f'{slimea}',False,(255,255,255))
+	screen.blit(slime_message,(650,40))
+
+	fishinghook_message = font.render(f'{fishing_hooka}',False,(255,255,255))
+	screen.blit(fishinghook_message,(650,110))
+
+	hook_message = font.render(f'{hooka}',False,(255,255,255))
+	screen.blit(hook_message,(650,190))
+
+	hook1_message = font.render(f'{hook1a}',False,(255,255,255))
+	screen.blit(hook1_message,(650,260))
+
+	slimesception_message = font.render(f'{slimesception}',False,(255,255,255))
+	screen.blit(slimesception_message,(650,330))
+
 	if slimea >= 1:
 		if tick >= 1:
 			score += 1 * slimea
 			tick = 0
-
+	if fishing_hooka >= 1:
+		if tick1 >= 1:
+			score += 10 * fishing_hooka * 1.2
+			tick1 = 0
+	if hooka >= 1:
+		if tick2 >= 1:
+			score += 100 * hooka * 1.4
+			tick2 = 0
+	if hook1a >= 1:
+		if tick3 >= 1:
+			score += 1000 * hook1a * 1.6
+			tick3 = 0
+	if slimesception >= 1:
+		if tick4 >= 1:
+			score += 10000 * slimesception * 2
+			tick4 = 0
 
 	pygame.display.update()
 	clock.tick(60)
-
 	if counter == 10:
 		value += 1
 		counter = 0
@@ -127,6 +175,34 @@ while True:
 	if bcounter == 60:
 		tick += 1
 		bcounter = 0
-		print("1 extra")
 	else:
 		bcounter += 1
+
+	if ccounter == 60:
+		tick1 += 1
+		ccounter = 0
+	else:
+		ccounter += 1
+
+	if dcounter == 60:
+		tick2 += 1
+		dcounter = 0
+	else:
+		dcounter += 1
+		
+	if gcounter == 60:
+		tick3 += 1
+		gcounter = 0
+	else:
+		gcounter += 1
+		
+	if fcounter == 60:
+		tick4 += 1
+		fcounter = 0
+	else:
+		fcounter += 1
+		
+
+
+
+
