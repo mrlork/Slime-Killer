@@ -148,19 +148,19 @@ while True:
 			tick = 0
 	if fishing_hooka >= 1:
 		if tick1 >= 1:
-			score += 10 * fishing_hooka * 1.2
+			score += 10 * fishing_hooka * 1.4
 			tick1 = 0
 	if hooka >= 1:
 		if tick2 >= 1:
-			score += 100 * hooka * 1.4
+			score += 100 * hooka * 1.6
 			tick2 = 0
 	if hook1a >= 1:
 		if tick3 >= 1:
-			score += 1000 * hook1a * 1.6
+			score += 1000 * hook1a * 1.8
 			tick3 = 0
 	if slimesception >= 1:
 		if tick4 >= 1:
-			score += 10000 * slimesception * 2
+			score += 10000 * slimesception * 2.2
 			tick4 = 0
 
 	pygame.display.update()
