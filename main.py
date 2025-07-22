@@ -1,11 +1,13 @@
 import pygame
 import sys
+import time
 pygame.init()
 
 screen = pygame.display.set_mode((800,400))
 pygame.display.set_caption('Idle Game For Epic People')
 clock = pygame.time.Clock()
 
+timecounter = 0
 font = pygame.font.Font('font.ttf',40)	
 x = 50
 y = 50
@@ -27,6 +29,12 @@ fishing_hook = pygame.image.load("Assets/fishinghook.png")
 hook = pygame.image.load("Assets/hook.png")
 hook1 = pygame.image.load("Assets/hook1.png")
 slime = pygame.image.load("Assets/slime.png")
+sword_rect = sword.get_rect(topleft=(550, 25))
+fishing_hook_rect = fishing_hook.get_rect(topleft=(550, 100))
+hook_rect = hook.get_rect(topleft=(550, 175))
+hook1_rect = hook1.get_rect(topleft=(550, 250))
+slime_rect = slime.get_rect(topleft=(550, 325))
+slimea = 0
 def load_image(filepath: str):
 	return pygame.image.load(filepath)
 
@@ -54,6 +62,20 @@ while True:
 			score += 1
 			print("Button clicked! Counter:", score)
 			hit = True
+		elif sword_rect.collidepoint(mousepoint):
+			if score >= 100:
+				slimea += 1
+				score -= 100
+				print("slimes: ", slimea)
+				
+		elif fishing_hook_rect.collidepoint(mousepoint):
+			print("Fishing Hook clicked!")
+		elif hook_rect.collidepoint(mousepoint):
+			print("Hook clicked!")
+		elif hook1_rect.collidepoint(mousepoint):
+			print("Hook1 clicked!")
+		elif slime_rect.collidepoint(mousepoint):
+			print("Slime clicked!")
 		mouse_was_down = True
 
 	if value >= len(slime_image):
@@ -85,6 +107,10 @@ while True:
 	
 	score_message = font.render(f'Slime: {score}',False,(255,255,255))
 	screen.blit(score_message,(25,25))
+
+	if slimea >= 1:
+		score += 1 * slimea
+		time.sleep(1)
 
 	pygame.display.update()
 	clock.tick(60)
