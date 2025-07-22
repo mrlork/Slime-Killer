@@ -2,11 +2,12 @@ import pygame
 import sys
 pygame.init()
 
+
+
 screen = pygame.display.set_mode((800,400))
 pygame.display.set_caption('Idle Game For Epic People')
 clock = pygame.time.Clock()
 background = pygame.image.load("backgrounf.png")
-
 
 tick = 0
 tick1 = 0
