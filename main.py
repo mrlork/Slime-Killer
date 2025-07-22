@@ -22,7 +22,11 @@ counter = 0
 slime_image = [pygame.image.load("slug_anim_f0.png"),pygame.image.load("slug_anim_f1.png"),pygame.image.load("slug_anim_f2.png"),pygame.image.load("slug_anim_f3.png")]
 blood_splatter = [pygame.image.load("Blood Splatter/B001.png"),pygame.image.load("Blood Splatter/B002.png"),pygame.image.load("Blood Splatter/B003.png"),pygame.image.load("Blood Splatter/B004.png"),pygame.image.load("Blood Splatter/B005.png"),pygame.image.load("Blood Splatter/B006.png"),pygame.image.load("Blood Splatter/B007.png"),pygame.image.load("Blood Splatter/B008.png"),pygame.image.load("Blood Splatter/B009.png"),pygame.image.load("Blood Splatter/B010.png")]
 hit = False
-
+sword = pygame.image.load("Assets/sword.png")
+fishing_hook = pygame.image.load("Assets/fishinghook.png")
+hook = pygame.image.load("Assets/hook.png")
+hook1 = pygame.image.load("Assets/hook1.png")
+slime = pygame.image.load("Assets/slime.png")
 def load_image(filepath: str):
 	return pygame.image.load(filepath)
 
@@ -69,7 +73,13 @@ while True:
 
 	screen.fill((0, 0, 0))
 	screen.blit(image, (x, y))
+	screen.blit(sword,(550,25))
+	screen.blit(fishing_hook,(550,100))
+	screen.blit(hook,(550,175))
+	screen.blit(hook1,(550,250))
+	screen.blit(slime,(550,325))
 
+	
 	if hit and value1 < len(blood_splatter):
 		screen.blit(blood, (mousepoint[0] - 25, mousepoint[1]))
 	
