@@ -1,14 +1,15 @@
 import pygame
 import sys
-import time
 pygame.init()
 
 screen = pygame.display.set_mode((800,400))
 pygame.display.set_caption('Idle Game For Epic People')
 clock = pygame.time.Clock()
 
+tick = 0
 timecounter = 0
 font = pygame.font.Font('font.ttf',40)	
+bcounter = 0
 x = 50
 y = 50
 value = 0
@@ -109,8 +110,10 @@ while True:
 	screen.blit(score_message,(25,25))
 
 	if slimea >= 1:
-		score += 1 * slimea
-		time.sleep(1)
+		if tick >= 1:
+			score += 1 * slimea
+			tick = 0
+
 
 	pygame.display.update()
 	clock.tick(60)
@@ -120,3 +123,10 @@ while True:
 		counter = 0
 	else:
 		counter += 1
+	
+	if bcounter == 60:
+		tick += 1
+		bcounter = 0
+		print("1 extra")
+	else:
+		bcounter += 1
