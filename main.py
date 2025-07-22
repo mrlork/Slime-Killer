@@ -5,6 +5,8 @@ pygame.init()
 screen = pygame.display.set_mode((800,400))
 pygame.display.set_caption('Idle Game For Epic People')
 clock = pygame.time.Clock()
+background = pygame.image.load("backgrounf.png")
+
 
 tick = 0
 tick1 = 0
@@ -63,6 +65,7 @@ while True:
 			pygame.quit()
 			exit()
 
+	screen.blit(background,(0,0))
 
 	mousepoint = pygame.mouse.get_pos()
 	if event.type == pygame.MOUSEBUTTONUP:
@@ -116,7 +119,6 @@ while True:
 	if hit and value1 < len(blood_splatter):
 		screen.blit(blood, (mousepoint[0] - 25, mousepoint[1]))
 	
-	screen.fill((0, 0, 0))
 	screen.blit(image, (x, y))
 	screen.blit(sword,(550,25))
 	screen.blit(fishing_hook,(550,100))
