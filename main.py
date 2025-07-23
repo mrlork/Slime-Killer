@@ -65,7 +65,6 @@ while True:
 			pygame.quit()
 			exit()
 
-	screen.blit(background,(0,0))
 
 	mousepoint = pygame.mouse.get_pos()
 	if event.type == pygame.MOUSEBUTTONUP:
@@ -106,6 +105,7 @@ while True:
 	image = slime_image[value]
 	image_rect = image.get_rect(midbottom=(y, x))
 	image = pygame.transform.scale_by(image, 6)
+	screen.blit(image, (x, y))
 
 	if hit:
 		if value1 < len(blood_splatter):
@@ -119,7 +119,6 @@ while True:
 	if hit and value1 < len(blood_splatter):
 		screen.blit(blood, (mousepoint[0] - 25, mousepoint[1]))
 	
-	screen.blit(image, (x, y))
 	screen.blit(sword,(550,25))
 	screen.blit(fishing_hook,(550,100))
 	screen.blit(hook,(550,175))
@@ -167,6 +166,7 @@ while True:
 
 	pygame.display.update()
 	clock.tick(60)
+	screen.blit(background,(0,0))
 
 	if counter == 10:
 		value += 1
