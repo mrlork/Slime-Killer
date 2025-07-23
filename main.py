@@ -2,8 +2,6 @@ import pygame
 import sys
 pygame.init()
 
-
-
 screen = pygame.display.set_mode((800,400))
 pygame.display.set_caption('Idle Game For Epic People')
 clock = pygame.time.Clock()
@@ -51,6 +49,7 @@ fishing_hooka = 0
 hooka = 0
 hook1a = 0
 slimesception = 0
+
 def load_image(filepath: str):
 	return pygame.image.load(filepath)
 
